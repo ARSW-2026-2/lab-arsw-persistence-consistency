@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Salidas crudas de pruebas (las seleccionadas se copian a entrega/evidencias)
+results/*
+!results/.gitkeep
