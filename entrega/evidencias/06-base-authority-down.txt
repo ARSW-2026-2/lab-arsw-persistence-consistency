@@ -1,0 +1,34 @@
+# inicio 2026-10-31T13:02:49Z
+ Container arsw-persistencia-tools-run-228de0bc9621 Creating 
+ Container arsw-persistencia-tools-run-228de0bc9621 Created 
+}
+Resultado guardado en results/reset-20261031T130250018509Z.json
+{"can_edit":true,"source":"cache-or-management","ttl_seconds":60}
+ Container arsw-persistencia-management-1 Stopping 
+ Container arsw-persistencia-management-1 Stopped 
+ Container arsw-persistencia-tools-run-b7146b1648f2 Creating 
+ Container arsw-persistencia-tools-run-b7146b1648f2 Created 
+{
+  "mode": "authority-down",
+  "utc": "2026-10-31T13:02:51.504743+00:00",
+  "results": [
+    {
+      "test": "autoridad_no_disponible",
+      "passed": false,
+      "evidence": {
+        "edit_status": 200,
+        "body": "{\"id\":\"board-1\",\"title\":\"Sin autoridad\",\"version\":2,\"preferences\":{\"background\":\"white\"}}"
+      }
+    }
+  ]
+}
+Resultado guardado en results/authority-down-20261031T130251504830Z.json
+
+exit=1
+ Container arsw-persistencia-postgres-1 Waiting 
+ Container arsw-persistencia-postgres-1 Healthy 
+ Container arsw-persistencia-management-1 Starting 
+ Container arsw-persistencia-management-1 Started 
+ Container arsw-persistencia-frontend-1 Restarting 
+ Container arsw-persistencia-frontend-1 Started 
+# fin 2026-10-31T13:03:01Z

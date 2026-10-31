@@ -1,0 +1,51 @@
+# inicio 2026-10-31T13:03:28Z
+ Image grafana/k6:0.57.0 Pulling 
+ 4f4fb700ef54 Pulling fs layer 0B
+ f860ff442d92 Pulling fs layer 0B
+ f073781953be Pulling fs layer 0B
+ 66a3d608f3fa Pulling fs layer 0B
+ 4f4fb700ef54 Already exists 0B
+ 66a3d608f3fa Already exists 0B
+ 5c4831ac1272 Download complete 0B
+ f073781953be Download complete 0B
+ f073781953be Extracting 1B
+ f860ff442d92 Downloading 3.146MB
+ f073781953be Pull complete 0B
+ f860ff442d92 Downloading 6.291MB
+ f860ff442d92 Downloading 8.389MB
+ f860ff442d92 Downloading 10.49MB
+ f860ff442d92 Downloading 13.63MB
+ f860ff442d92 Downloading 15.73MB
+ f860ff442d92 Downloading 18.87MB
+ f860ff442d92 Downloading 20.97MB
+ f860ff442d92 Downloading 24.12MB
+ f860ff442d92 Downloading 27.26MB
+ f860ff442d92 Downloading 29.36MB
+ f860ff442d92 Download complete 0B
+ f860ff442d92 Extracting 1B
+ f860ff442d92 Extracting 1B
+ f860ff442d92 Extracting 1B
+ f860ff442d92 Extracting 1B
+ 4f4fb700ef54 Pull complete 0B
+ f860ff442d92 Pull complete 0B
+ Image grafana/k6:0.57.0 Pulled 
+ Container arsw-persistencia-k6-run-e49b2c7abc33 Creating 
+ Container arsw-persistencia-k6-run-e49b2c7abc33 Created 
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+     execution: local
+        script: /scripts/workload.js
+        output: -
+     scenarios: (100.00%) 1 scenario, 5 max VUs, 2m10s max duration (incl. graceful stop):
+              * default: Up to 5 looping VUs for 1m40s over 3 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+{
+  "prueba": "carga",
+  "P95_ms": 8.834925,
+  "fallos": 0,
+  "nota": "Umbrales didácticos; justificar resultados según recursos."
+}
+default ✓ [ 100% ] 0/5 VUs  1m40s
+# fin 2026-10-31T13:05:12Z

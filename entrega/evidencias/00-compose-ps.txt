@@ -1,0 +1,10 @@
+# 2026-10-31T13:01:53Z docker compose ps
+NAME                             IMAGE                         COMMAND                  SERVICE      CREATED          STATUS                    PORTS
+arsw-persistencia-content-1      arsw-persistencia-api:local   "uvicorn services.co…"   content      24 seconds ago   Up 12 seconds (healthy)   
+arsw-persistencia-frontend-1     nginx:1.27.3-alpine           "/docker-entrypoint.…"   frontend     24 seconds ago   Up 6 seconds              127.0.0.1:8080->80/tcp
+arsw-persistencia-grafana-1      grafana/grafana:11.5.1        "/run.sh"                grafana      25 seconds ago   Up 23 seconds             127.0.0.1:3000->3000/tcp
+arsw-persistencia-management-1   arsw-persistencia-api:local   "uvicorn services.ma…"   management   24 seconds ago   Up 18 seconds (healthy)   
+arsw-persistencia-mongo-1        mongo:7.0.16                  "docker-entrypoint.s…"   mongo        25 seconds ago   Up 22 seconds (healthy)   27017/tcp
+arsw-persistencia-postgres-1     postgres:16.6-alpine          "docker-entrypoint.s…"   postgres     25 seconds ago   Up 23 seconds (healthy)   5432/tcp
+arsw-persistencia-prometheus-1   prom/prometheus:v3.1.0        "/bin/prometheus --c…"   prometheus   25 seconds ago   Up 23 seconds             127.0.0.1:9090->9090/tcp
+arsw-persistencia-redis-1        redis:7.4.2-alpine            "docker-entrypoint.s…"   redis        25 seconds ago   Up 23 seconds (healthy)   6379/tcp

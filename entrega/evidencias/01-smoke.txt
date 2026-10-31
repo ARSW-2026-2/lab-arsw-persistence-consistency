@@ -1,0 +1,23 @@
+# 2026-10-31T13:01:54Z smoke
+ Container arsw-persistencia-tools-run-522b04936900 Creating 
+ Container arsw-persistencia-tools-run-522b04936900 Created 
+{
+  "mode": "smoke",
+  "utc": "2026-10-31T13:01:54.832104+00:00",
+  "results": [
+    {
+      "test": "arranque",
+      "passed": true,
+      "evidence": {
+        "id": "board-1",
+        "title": "Tablero ARSW",
+        "version": 1,
+        "preferences": {
+          "background": "white"
+        }
+      }
+    }
+  ]
+}
+Resultado guardado en results/smoke-20261031T130154832211Z.json
+exit=0

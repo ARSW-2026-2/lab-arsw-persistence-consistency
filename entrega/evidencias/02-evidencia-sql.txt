@@ -1,0 +1,28 @@
+# inicio 2026-10-31T13:01:55Z
+ etapa | board_id | user_id | can_edit 
+-------+----------+---------+----------
+ ANTES | board-1  | luis    | t
+(1 row)
+
+BEGIN
+UPDATE 1
+         etapa         | board_id | user_id | can_edit 
+-----------------------+----------+---------+----------
+ DENTRO DE TRANSACCION | board-1  | luis    | f
+(1 row)
+
+ROLLBACK
+        etapa        | board_id | user_id | can_edit 
+---------------------+----------+---------+----------
+ DESPUES DE ROLLBACK | board-1  | luis    | t
+(1 row)
+
+BEGIN
+ROLLBACK
+BEGIN
+psql:/lab/evidence.sql:9: ERROR:  duplicate key value violates unique constraint "memberships_pkey"
+DETAIL:  Key (board_id, user_id)=(board-1, ana) already exists.
+psql:/lab/evidence.sql:13: ERROR:  insert or update on table "memberships" violates foreign key constraint "memberships_user_id_fkey"
+DETAIL:  Key (user_id)=(usuario-inexistente) is not present in table "users".
+ROLLBACK
+# fin 2026-10-31T13:01:55Z

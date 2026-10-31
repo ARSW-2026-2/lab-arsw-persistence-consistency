@@ -1,0 +1,31 @@
+# inicio 2026-10-31T13:02:36Z
+ Container arsw-persistencia-tools-run-6987695d657d Creating 
+ Container arsw-persistencia-tools-run-6987695d657d Created 
+}
+Resultado guardado en results/reset-20261031T130237337579Z.json
+ Container arsw-persistencia-redis-1 Stopping 
+ Container arsw-persistencia-redis-1 Stopped 
+ Container arsw-persistencia-tools-run-5312e446a6eb Creating 
+ Container arsw-persistencia-tools-run-5312e446a6eb Created 
+{
+  "mode": "redis-down",
+  "utc": "2026-10-31T13:02:44.603621+00:00",
+  "results": [
+    {
+      "test": "degradacion_redis",
+      "passed": false,
+      "evidence": {
+        "edit_status": 200,
+        "presence_status": 503,
+        "presence": "{\"detail\":\"Redis no disponible: implementar degradación\"}"
+      }
+    }
+  ]
+}
+Resultado guardado en results/redis-down-20261031T130244603720Z.json
+
+exit=1
+ Container arsw-persistencia-redis-1 Starting 
+ Container arsw-persistencia-redis-1 Started 
+PONG
+# fin 2026-10-31T13:02:49Z
