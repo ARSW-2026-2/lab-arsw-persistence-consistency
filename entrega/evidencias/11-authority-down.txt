@@ -1,0 +1,42 @@
+# inicio 2026-10-31T13:08:29Z
+ Container arsw-persistencia-tools-run-656bb8f2b190 Creating 
+ Container arsw-persistencia-tools-run-656bb8f2b190 Created 
+Resultado guardado en results/reset-20261031T130830584923Z.json
+# prime caché de Ana:
+{"can_edit":true,"source":"cache-or-management","ttl_seconds":60}
+{"can_edit":true,"source":"cache-or-management","ttl_seconds":60}
+1
+60
+ Container arsw-persistencia-management-1 Stopping 
+ Container arsw-persistencia-management-1 Stopped 
+# management detenido 2026-10-31T13:08:31Z
+ Container arsw-persistencia-tools-run-11f1dcdfaf27 Creating 
+ Container arsw-persistencia-tools-run-11f1dcdfaf27 Created 
+{
+  "mode": "authority-down",
+  "utc": "2026-10-31T13:08:32.475151+00:00",
+  "results": [
+    {
+      "test": "autoridad_no_disponible",
+      "passed": true,
+      "evidence": {
+        "edit_status": 503,
+        "body": "{\"detail\":\"No se puede validar el permiso; escritura no autorizada\"}"
+      }
+    }
+  ]
+}
+Resultado guardado en results/authority-down-20261031T130832475244Z.json
+exit=0
+# lectura de permiso (UI) con caché y autoridad caída:
+{"can_edit":true,"source":"cache-or-management","ttl_seconds":60}
+# lectura de tablero:
+{"id":"board-1","title":"Tablero ARSW","version":1,"preferences":{"background":"white"}}
+ Container arsw-persistencia-postgres-1 Waiting 
+ Container arsw-persistencia-postgres-1 Healthy 
+ Container arsw-persistencia-management-1 Starting 
+ Container arsw-persistencia-management-1 Started 
+ Container arsw-persistencia-frontend-1 Restarting 
+ Container arsw-persistencia-frontend-1 Started 
+# management restaurado 2026-10-31T13:09:05Z
+{"service":"management","alive":true}

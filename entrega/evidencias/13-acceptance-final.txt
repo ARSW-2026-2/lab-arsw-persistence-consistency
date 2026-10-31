@@ -1,0 +1,86 @@
+# acceptance final · inicio 2026-10-31T13:12:33Z
+ Container arsw-persistencia-tools-run-59cf77a879d1 Creating 
+ Container arsw-persistencia-tools-run-59cf77a879d1 Created 
+{
+  "mode": "acceptance",
+  "utc": "2026-10-31T13:12:56.320266+00:00",
+  "results": [
+    {
+      "test": "arranque",
+      "passed": true,
+      "evidence": {
+        "id": "board-1",
+        "title": "Cambio de Ana (pestaña 1)",
+        "version": 2,
+        "preferences": {
+          "background": "white"
+        }
+      }
+    },
+    {
+      "test": "ediciones_concurrentes",
+      "passed": true,
+      "evidence": {
+        "statuses": [
+          200,
+          409
+        ],
+        "before": {
+          "id": "board-1",
+          "title": "Tablero ARSW",
+          "version": 1,
+          "preferences": {
+            "background": "white"
+          }
+        },
+        "after": {
+          "id": "board-1",
+          "title": "Cambio de luis",
+          "version": 2,
+          "preferences": {
+            "background": "white"
+          }
+        }
+      }
+    },
+    {
+      "test": "permiso_revocado",
+      "passed": true,
+      "evidence": {
+        "cached_before": {
+          "can_edit": true,
+          "source": "cache-or-management",
+          "ttl_seconds": 60
+        },
+        "write_status": 403,
+        "after": {
+          "id": "board-1",
+          "title": "Tablero ARSW",
+          "version": 1,
+          "preferences": {
+            "background": "white"
+          }
+        }
+      }
+    },
+    {
+      "test": "presencia_expira",
+      "passed": true,
+      "evidence": {
+        "before": {
+          "available": true,
+          "users": [
+            "ana"
+          ]
+        },
+        "after_22s": {
+          "available": true,
+          "users": []
+        }
+      }
+    }
+  ]
+}
+Resultado guardado en results/acceptance-20261031T131256320405Z.json
+exit=0
+# fin 2026-10-31T13:12:56Z

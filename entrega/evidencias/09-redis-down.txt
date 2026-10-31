@@ -1,0 +1,32 @@
+# inicio 2026-10-31T13:07:09Z
+ Container arsw-persistencia-tools-run-821fa97a2fa9 Creating 
+ Container arsw-persistencia-tools-run-821fa97a2fa9 Created 
+Resultado guardado en results/reset-20261031T130710218510Z.json
+ Container arsw-persistencia-redis-1 Stopping 
+ Container arsw-persistencia-redis-1 Stopped 
+# redis detenido 2026-10-31T13:07:10Z
+ Container arsw-persistencia-tools-run-e7a2d25658ae Creating 
+ Container arsw-persistencia-tools-run-e7a2d25658ae Created 
+{
+  "mode": "redis-down",
+  "utc": "2026-10-31T13:07:17.458697+00:00",
+  "results": [
+    {
+      "test": "degradacion_redis",
+      "passed": true,
+      "evidence": {
+        "edit_status": 200,
+        "presence_status": 200,
+        "presence": "{\"available\":false,\"ttl_seconds\":null}"
+      }
+    }
+  ]
+}
+Resultado guardado en results/redis-down-20261031T130717458779Z.json
+exit=0
+# heartbeats con Redis caído enviados 2026-10-31T13:07:47Z
+{"available":false,"users":[]}
+ Container arsw-persistencia-redis-1 Starting 
+ Container arsw-persistencia-redis-1 Started 
+# redis restaurado 2026-10-31T13:07:53Z
+PONG
