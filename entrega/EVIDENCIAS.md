@@ -3,7 +3,7 @@
 Cristian Aristizábal (1000104617, `Cristian-Aristi`) · Santiago Pinzón (1000103871, `els4nty`)
 
 ## Entorno
-- Linux x86_64 · 4 vCPU · 15 GB de RAM disponibles para Docker
+-  Windows 11 · 4 vCPU · 15 GB de RAM disponibles para Docker
 - Docker Engine 29.9.2 · Docker Compose v5.6.1
 - Imágenes: las de `compose.yaml` (postgres 16.6, mongo 7.0.16, redis 7.4.2, prometheus v3.1.0, grafana 11.5.1, k6 0.57.0, nginx 1.27.3)
 - Todas las horas están en **UTC** y son del 31/10/2026. Las capturas del frontend tienen la hora arriba a la derecha y las de Grafana muestran el rango de tiempo.
