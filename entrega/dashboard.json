@@ -407,7 +407,7 @@
     "from": "now-15m",
     "to": "now"
   },
-  "title": "ARSW-EQP-XX · Persistencia",
+  "title": "ARSW-EQP-02 · Persistencia",
   "uid": "arsw-eqp-persistencia",
-  "version": 1
+  "version": 2
 }

@@ -1,4 +1,4 @@
-# Evidencias · ARSW-EQP-XX
+# Evidencias · ARSW-EQP-02
 
 Cristian Aristizábal (1000104617, `Cristian-Aristi`) · Santiago Pinzón (1000103871, `els4nty`)
 
@@ -41,7 +41,7 @@ En Prometheus, durante las cargas, el P95 del backend (`content`) estaba cerca d
 
 ## Observabilidad
 
-El dashboard se llama **ARSW-EQP-XX · Persistencia** (`entrega/dashboard.json`, uid `arsw-eqp-persistencia`, fuente `prometheus`). Tiene 9 paneles: los 2 que venían (`up` y solicitudes por segundo), los 6 de `docs/OBSERVABILIDAD.md` (P95, errores 5xx, dependencias, aciertos de caché, conflictos y presencia degradada) y el opcional de respuestas por código. Capturas: `capturas/grafana-dashboard-completo.png` (13:00 a 13:11 UTC), `grafana-k6-base.png`, `grafana-fallos-solucion.png` y `grafana-k6-solucion.png`.
+El dashboard se llama **ARSW-EQP-02 · Persistencia** (`entrega/dashboard.json`, uid `arsw-eqp-persistencia`, fuente `prometheus`). Tiene 9 paneles: los 2 que venían (`up` y solicitudes por segundo), los 6 de `docs/OBSERVABILIDAD.md` (P95, errores 5xx, dependencias, aciertos de caché, conflictos y presencia degradada) y el opcional de respuestas por código. Capturas: `capturas/grafana-dashboard-completo.png` (13:00 a 13:13 UTC), `grafana-k6-base.png`, `grafana-fallos-solucion.png` y `grafana-k6-solucion.png`.
 
 **¿Por qué puede subir el contador de conflictos mientras baja la pérdida de cambios?**
 Porque cada conflicto es un cambio que no se perdió. En la base las dos ediciones daban 200 y la segunda borraba a la primera sin que nadie lo notara; el contador quedaba en 0 porque el sistema ni se enteraba. Ahora la segunda edición recibe 409 y `lab_conflicts_total` sube. En la gráfica se ven picos de unos 0,018/s entre 13:06 y 13:10, uno por cada acceptance y por la prueba de las dos pestañas. Que haya más conflictos visibles significa que hay menos cambios pisados en silencio.

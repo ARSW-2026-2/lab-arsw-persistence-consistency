@@ -1,4 +1,4 @@
-# Matriz de decisiones · ARSW-EQP-XX
+# Matriz de decisiones · ARSW-EQP-02
 
 Integrantes:
 - Cristian Aristizábal · carnet 1000104617 · GitHub `Cristian-Aristi`
