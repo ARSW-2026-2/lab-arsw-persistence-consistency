@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+scrape_configs:
+  - job_name: management
+    static_configs:
+      - targets: ['management:8000']
+  - job_name: content
+    static_configs:
+      - targets: ['content:8000']

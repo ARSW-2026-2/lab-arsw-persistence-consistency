@@ -1,0 +1,125 @@
+name: arsw-persistencia
+x-api: &api
+  build: .
+  image: arsw-persistencia-api:local
+  restart: unless-stopped
+  volumes:
+    - ./services:/app/services:ro
+    - ./common:/app/common:ro
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+    interval: 5s
+    timeout: 3s
+    retries: 20
+    start_period: 15s
+services:
+  postgres:
+    image: postgres:16.6-alpine
+    environment:
+      POSTGRES_DB: boards
+      POSTGRES_USER: lab
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lab-postgres}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./db/evidence.sql:/lab/evidence.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab -d boards"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  mongo:
+    image: mongo:7.0.16
+    volumes:
+      - mongodata:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  redis:
+    image: redis:7.4.2-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  management:
+    <<: *api
+    command: ["uvicorn", "services.management.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      SERVICE_NAME: management
+      PGHOST: postgres
+      PGDATABASE: boards
+      PGUSER: lab
+      PGPASSWORD: ${POSTGRES_PASSWORD:-lab-postgres}
+      LAB_ADMIN_KEY: ${LAB_ADMIN_KEY:-lab-admin}
+    depends_on:
+      postgres: {condition: service_healthy}
+  content:
+    <<: *api
+    environment:
+      SERVICE_NAME: content
+      MONGO_URI: mongodb://mongo:27017
+      REDIS_URL: redis://redis:6379/0
+      MANAGEMENT_URL: http://management:8000
+      LAB_ADMIN_KEY: ${LAB_ADMIN_KEY:-lab-admin}
+    depends_on:
+      mongo: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      management: {condition: service_healthy}
+  frontend:
+    image: nginx:1.27.3-alpine
+    ports: ["127.0.0.1:${WEB_PORT:-8080}:80"]
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      content: {condition: service_healthy}
+      management: {condition: service_healthy}
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    ports: ["127.0.0.1:${PROMETHEUS_PORT:-9090}:9090"]
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - promdata:/prometheus
+  grafana:
+    image: grafana/grafana:11.5.1
+    ports: ["127.0.0.1:${GRAFANA_PORT:-3000}:3000"]
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-lab-grafana}
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+    volumes:
+      - grafanadata:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+  tools:
+    image: arsw-persistencia-api:local
+    build: .
+    profiles: [tools]
+    working_dir: /work
+    volumes:
+      - ./scripts:/work/scripts:ro
+      - ./results:/work/results
+    environment:
+      BASE_URL: http://frontend
+      LAB_ADMIN_KEY: ${LAB_ADMIN_KEY:-lab-admin}
+    entrypoint: ["python", "scripts/check.py"]
+  k6:
+    image: grafana/k6:0.57.0
+    profiles: [tools]
+    user: "0:0"
+    volumes:
+      - ./k6:/scripts:ro
+      - ./results:/results
+    environment:
+      BASE_URL: http://frontend
+      TYPE: ${TYPE:-carga}
+    command: ["run", "/scripts/workload.js"]
+volumes:
+  pgdata:
+  mongodata:
+  promdata:
+  grafanadata:
